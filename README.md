@@ -77,6 +77,8 @@ The reference pipeline is the validated workflow from:
 
 > Reska T, Pozdniakova S, Urban L. "Air monitoring by nanopore sequencing." *ISME Communications* (2024). DOI: [10.1093/ismeco/ycae058](https://doi.org/10.1093/ismeco/ycae058)
 
+The ground truth pipeline used in this evaluation is from Reska et al. (2024). As the first author of that study, I serve as both the domain expert evaluator and the original developer of the reference workflow, eliminating the interpretive gap that typically exists between benchmark designers and domain practitioners.
+
 This pipeline processes Oxford Nanopore long-read sequencing data from low-biomass environmental samples generated with the Rapid Barcoding Kit (RBK114.24). It was developed, validated, and published independently of any LLM assistance.
 
 ### Stateless Cumulative Prompting Protocol
