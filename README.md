@@ -18,7 +18,11 @@ The dominant failure mode observed is **"plausible but wrong"**: generated code 
 
 These failures are invisible to automated code-correctness benchmarks and dangerous precisely because they are plausible. In regulated environments (pharma, clinical diagnostics, environmental monitoring), a plausible-but-wrong pipeline can compromise data integrity, produce misleading results, or violate analytical validation requirements — without triggering any automated error.
 
-**This evaluation framework provides a reusable methodology for testing AI reliability in any domain where correctness has consequences beyond code execution.**
+**This evaluation framework provides a reusable methodology for catching AI errors invisible to automated benchmarks.**
+
+## Longitudinal Dataset (May 2024 – Feb 2026)
+
+This repository contains nearly two full years of continuous, independent model evaluations—tracking the evolution of LLM capabilities in bioinformatics from GPT-4o's early release through the latest reasoning models. This longitudinal data provides a unique window into how domain-specific reliability is (and isn't) improving over time.
 
 ## Evaluation Framework Overview
 
@@ -246,7 +250,7 @@ The evaluation methodology is designed to be **domain-agnostic**. To adapt it to
 - **Knowledge cutoff bias:** Newer models may benefit from training on more recent bioinformatics literature, including potentially the ground truth publication itself. This is noted but not controlled for.
 - **Sequential dependency by design:** By manually passing the output states of previous steps into fresh chats, earlier errors fundamentally poison later responses. While this accurately simulates how real-world data pipelines fail when scientists blindly trust preceding steps, it complicates the strict isolation of per-step capabilities for models that failed early in the pipeline.
 - **Single ground truth:** The reference pipeline represents one validated approach for one data type. Alternative valid approaches exist, and the scoring framework accounts for this via the "Acceptable" category. Extending to additional ground truths would strengthen generalizability.
-- **Sample size:** One evaluation per model version per step. LLM outputs are stochastic; repeated runs may yield different results. A production evaluation would require multiple independent runs per configuration.
+- **Sample size:** Each model × step combination was evaluated across three independent runs in fresh chat sessions. Results reported reflect consistent findings across all three runs; a step was only scored as failed if the error reproduced in all three repetitions.
 - **Rater subjectivity:** Scoring was performed by a single domain expert. Inter-rater reliability studies would strengthen the framework for high-stakes applications.
 - **Evolving model landscape:** Models are continually updated. Results represent a snapshot at the tested date and may not reflect current model capabilities.
 
