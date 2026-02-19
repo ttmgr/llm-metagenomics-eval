@@ -158,7 +158,7 @@ def plot_version_timeline(df: pd.DataFrame, output_path: str):
     version_order = {
         "openai": ["gpt4o", "o1_preview", "o1_mini", "o1", "o1_pro", "o3_mini", "o3_high", "o4_mini", "gpt5"],
         "claude": ["sonnet_3.5", "sonnet_4", "sonnet_4.5", "haiku_4.5", "opus_4.5", "opus_4.6"],
-        "gemini": ["2.0_flash", "2.5_pro_preview", "2.5_flash", "2.5_pro_stable", "3_pro", "3_deep_think", "3_flash"],
+        "gemini": ["2.0_flash", "2.5_pro_preview", "2.5_flash", "2.5_pro_stable", "3_pro", "3_flash"],
     }
 
     version_labels = {
@@ -167,7 +167,7 @@ def plot_version_timeline(df: pd.DataFrame, output_path: str):
         "sonnet_3.5": "S3.5", "sonnet_4": "S4", "sonnet_4.5": "S4.5",
         "haiku_4.5": "H4.5", "opus_4.5": "Op4.5", "opus_4.6": "Op4.6",
         "2.0_flash": "2.0F", "2.5_pro_preview": "2.5PP", "2.5_flash": "2.5F",
-        "2.5_pro_stable": "2.5P", "3_pro": "3P", "3_deep_think": "3DT", "3_flash": "3F",
+        "2.5_pro_stable": "2.5P", "3_pro": "3P", "3_flash": "3F",
     }
 
     for family, style in FAMILY_STYLES.items():

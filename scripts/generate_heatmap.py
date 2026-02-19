@@ -62,7 +62,6 @@ MODEL_ORDER = [
     ("gemini", "2.5_flash"),
     ("gemini", "2.5_pro_stable"),
     ("gemini", "3_pro"),
-    ("gemini", "3_deep_think"),
     ("gemini", "3_flash"),
 ]
 
@@ -87,7 +86,6 @@ MODEL_LABELS = {
     ("gemini", "2.5_flash"): "2.5 Flash",
     ("gemini", "2.5_pro_stable"): "2.5 Pro",
     ("gemini", "3_pro"): "3 Pro",
-    ("gemini", "3_deep_think"): "3 Deep Think",
     ("gemini", "3_flash"): "3 Flash",
 }
 
