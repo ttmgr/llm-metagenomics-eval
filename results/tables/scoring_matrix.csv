@@ -139,13 +139,7 @@ gemini,3_pro,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; DIAMOND alternat
 gemini,3_pro,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon; pooling noted
 gemini,3_pro,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness for low-biomass
 gemini,3_pro,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
-gemini,3_deep_think,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
-gemini,3_deep_think,2,quality_control,C,C,P,S,R,NanoPlot comprehensive
-gemini,3_deep_think,3,host_depletion,C,C,P,S,R,minimap2; excellent reasoning about necessity
-gemini,3_deep_think,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; comprehensive discussion
-gemini,3_deep_think,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon correct
-gemini,3_deep_think,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% thresholds
-gemini,3_deep_think,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all levels
+
 gemini,3_flash,1,basecalling,A,P,P,Q,M,Dorado + Chopper but wrong flags; wrong quality threshold
 gemini,3_flash,2,quality_control,C,C,P,S,R,NanoPlot correct
 gemini,3_flash,3,host_depletion,C,P,P,Q,R,minimap2 correct but ignored air sample context
@@ -181,3 +175,24 @@ gemini,3.1_pro,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; comprehensive
 gemini,3.1_pro,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon; correct
 gemini,3.1_pro,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness
 gemini,3.1_pro,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
+openai,chatgpt_deep_research,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+openai,chatgpt_deep_research,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+openai,chatgpt_deep_research,3,host_depletion,C,C,P,S,R,minimap2; excellent context
+openai,chatgpt_deep_research,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt
+openai,chatgpt_deep_research,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon
+openai,chatgpt_deep_research,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness
+openai,chatgpt_deep_research,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
+claude,deep_research,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+claude,deep_research,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+claude,deep_research,3,host_depletion,C,C,P,S,R,minimap2; excellent context
+claude,deep_research,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt
+claude,deep_research,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon
+claude,deep_research,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness
+claude,deep_research,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
+google,gemini_deep_research,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+google,gemini_deep_research,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+google,gemini_deep_research,3,host_depletion,C,C,P,S,R,minimap2; excellent context
+google,gemini_deep_research,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt
+google,gemini_deep_research,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon
+google,gemini_deep_research,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness
+google,gemini_deep_research,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
