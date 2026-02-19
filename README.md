@@ -113,7 +113,7 @@ For each model, the evaluation followed a cumulative progression:
 | Gemini | 2.5 Flash | 2025-06-17 | 2025-06-19 |
 | Gemini | 2.5 Pro (stable) | 2025-06-26 | 2025-07-01 |
 | Gemini | 3 Pro | 2025-11-17 | 2025-11-20 |
-| Gemini | 3 Deep Think | 2025-11-17 | 2025-11-23 |
+
 | Gemini | 3 Flash | 2025-12-16 | 2025-12-20 |
 
 ### Pipeline steps
