@@ -153,3 +153,31 @@ gemini,3_flash,4,taxonomic_classification,C,P,P,S,R,Kraken2 + nt but wrong repor
 gemini,3_flash,5,assembly,C,P,P,Q,M,MetaFlye + 2x Racon; wrong read flag
 gemini,3_flash,6,binning,A,P,F,Q,M,metaWRAP + CheckM but 60% completeness; wrong binning order
 gemini,3_flash,7,functional_annotation,A,P,P,Q,M,AMRFinderPlus + ABRicate; missed read-level; wrong flags
+deepseek,v3,1,basecalling,I,I,F,I,N,Used wrong flags; wrong tool; generated wildcards in code
+deepseek,v3,2,quality_control,I,I,F,I,N,Used wrong flags; generated wildcards in code
+deepseek,v3,3,host_depletion,I,I,F,I,N,Used wrong flags; generated wildcards in code
+deepseek,v3,4,taxonomic_classification,I,I,F,I,N,Used wrong flags; generated wildcards in code
+deepseek,v3,5,assembly,I,I,F,I,N,Used wrong flags; generated wildcards in code
+deepseek,v3,6,binning,I,I,F,I,N,Used wrong flags; generated wildcards in code
+deepseek,v3,7,functional_annotation,I,I,F,I,N,Used wrong flags; generated wildcards in code
+zhipu,glm_5,1,basecalling,C,P,P,Q,M,Dorado correct; minor flag issues
+zhipu,glm_5,2,quality_control,C,C,P,S,R,NanoPlot correct
+zhipu,glm_5,3,host_depletion,C,P,P,Q,R,minimap2 correct
+zhipu,glm_5,4,taxonomic_classification,C,P,P,S,R,Kraken2 + nt
+zhipu,glm_5,5,assembly,I,I,F,I,N,Failed assembly completely; wrong tool/flags
+zhipu,glm_5,6,binning,C,P,P,Q,M,metaWRAP + CheckM; acceptable
+zhipu,glm_5,7,functional_annotation,I,I,F,I,N,Failed resistance annotation and virulence screening
+claude,sonnet_4.6,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+claude,sonnet_4.6,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+claude,sonnet_4.6,3,host_depletion,C,C,P,S,R,minimap2; excellent sample context
+claude,sonnet_4.6,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; comprehensive
+claude,sonnet_4.6,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon; correct
+claude,sonnet_4.6,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness
+claude,sonnet_4.6,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
+gemini,3.1_pro,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+gemini,3.1_pro,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+gemini,3.1_pro,3,host_depletion,C,C,P,S,R,minimap2; excellent reasoning
+gemini,3.1_pro,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; comprehensive
+gemini,3.1_pro,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon; correct
+gemini,3.1_pro,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness
+gemini,3.1_pro,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
