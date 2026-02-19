@@ -10,9 +10,9 @@
 
 | Model Family | First Fully Correct Version | Notes |
 |:-------------|:----------------------------|:------|
-| ChatGPT | o3 (high reasoning) | [PLACEHOLDER] |
-| Claude | Sonnet 4 | [PLACEHOLDER] |
-| Gemini | 2.5 Pro Preview | [PLACEHOLDER] |
+| OpenAI | GPT-5 (high) | [PLACEHOLDER] |
+| Claude | Opus 4.5 | [PLACEHOLDER] |
+| Gemini | 3 Pro | [PLACEHOLDER] |
 
 ### Hardest step across all models
 

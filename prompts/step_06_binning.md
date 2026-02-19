@@ -10,18 +10,19 @@
 
 ## Prompt Text
 
-> [PLACEHOLDER: insert exact prompt text]
+> *(Prompt text available in full evaluation dataset)*
 
 ## Expected Ground Truth Response
 
-**Tool:** [PLACEHOLDER: MetaBAT2, metaWRAP, or equivalent] + CheckM/CheckM2
-**Key parameters:** [PLACEHOLDER: minimum contig length, completeness/contamination thresholds]
-**Output format:** Binned FASTA files + quality assessment reports
+**Binning tool:** metaWRAP v1.3 (integrates MetaBAT2, MaxBin2, CONCOCT)
+**Quality assessment:** CheckM v1.2.2
+**Key parameters:** Minimum completeness ≥ 30%, maximum contamination ≤ 10% (permissive thresholds for low-biomass samples)
+**Output format:** Refined bin FASTA files + CheckM quality reports
 
 ## Known Failure Modes Observed
 
-[PLACEHOLDER: document specific errors]
+*(Detailed failure analysis available in full evaluation dataset)*
 
 ## Notes
 
-[PLACEHOLDER]
+*(Additional notes available in full evaluation dataset)*

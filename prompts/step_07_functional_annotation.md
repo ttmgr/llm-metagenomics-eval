@@ -10,18 +10,20 @@
 
 ## Prompt Text
 
-> [PLACEHOLDER: insert exact prompt text]
+> *(Prompt text available in full evaluation dataset)*
 
 ## Expected Ground Truth Response
 
-**Tool:** [PLACEHOLDER: Prokka, Bakta, or equivalent] + AMRFinderPlus / ABRicate
-**Key parameters:** [PLACEHOLDER: metagenome mode, database selections]
-**Output format:** GFF/GBK annotation files + AMR/virulence summary tables
+**AMR detection:** AMRFinderPlus v3.12.8
+**Resistance/virulence screening:** ABRicate v1.0.1
+**Format conversion:** seqkit v2.8.2 (FASTQ → FASTA for read-level application)
+**Key parameters:** Applied at three levels — reads, contigs, and bins
+**Output format:** AMR gene tables + virulence factor reports per level
 
 ## Known Failure Modes Observed
 
-[PLACEHOLDER: document specific errors]
+*(Detailed failure analysis available in full evaluation dataset)*
 
 ## Notes
 
-[PLACEHOLDER]
+*(Additional notes available in full evaluation dataset)*

@@ -10,18 +10,19 @@
 
 ## Prompt Text
 
-> [PLACEHOLDER: insert exact prompt text]
+> *(Prompt text available in full evaluation dataset)*
 
 ## Expected Ground Truth Response
 
-**Tool:** MetaFlye (Flye with `--meta`)
-**Key parameters:** [PLACEHOLDER: read type flag, minimum overlap, genome size estimate]
-**Output format:** Assembly FASTA + assembly_info.txt
+**Assembler:** MetaFlye v2.9.1 (Flye with `--meta`)
+**Polishing:** minimap2 v2.17 + Racon v1.5 (3 rounds)
+**Key parameters:** `--nano-hq` read type flag, `--meta` for metagenomic data
+**Output format:** Polished assembly FASTA + assembly_info.txt
 
 ## Known Failure Modes Observed
 
-[PLACEHOLDER: document specific errors]
+*(Detailed failure analysis available in full evaluation dataset)*
 
 ## Notes
 
-[PLACEHOLDER]
+*(Additional notes available in full evaluation dataset)*

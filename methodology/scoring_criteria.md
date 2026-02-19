@@ -76,8 +76,6 @@ Are the analytical choices defensible for this data type and experimental contex
 
 This dimension tests **domain expertise**, not just tool knowledge. A model might select the right tool with correct parameters, producing code that runs — but the analytical approach is wrong for the biological question or data type.
 
-[PLACEHOLDER: add specific examples encountered during evaluation]
-
 ---
 
 ## 5. Executability

@@ -42,27 +42,57 @@ STEP_LABELS = {
 }
 
 MODEL_ORDER = [
-    ("chatgpt", "gpt4o"),
-    ("chatgpt", "o3_mini"),
-    ("chatgpt", "o3_high"),
+    ("openai", "gpt4o"),
+    ("openai", "o1_preview"),
+    ("openai", "o1_mini"),
+    ("openai", "o1"),
+    ("openai", "o1_pro"),
+    ("openai", "o3_mini"),
+    ("openai", "o3_high"),
+    ("openai", "o4_mini"),
+    ("openai", "gpt5"),
     ("claude", "sonnet_3.5"),
     ("claude", "sonnet_4"),
+    ("claude", "sonnet_4.5"),
+    ("claude", "haiku_4.5"),
+    ("claude", "opus_4.5"),
+    ("claude", "opus_4.6"),
     ("gemini", "2.0_flash"),
     ("gemini", "2.5_pro_preview"),
+    ("gemini", "2.5_flash"),
+    ("gemini", "2.5_pro_stable"),
+    ("gemini", "3_pro"),
+    ("gemini", "3_deep_think"),
+    ("gemini", "3_flash"),
 ]
 
 MODEL_LABELS = {
-    ("chatgpt", "gpt4o"): "GPT-4o",
-    ("chatgpt", "o3_mini"): "o3-mini",
-    ("chatgpt", "o3_high"): "o3 (high)",
+    ("openai", "gpt4o"): "GPT-4o",
+    ("openai", "o1_preview"): "o1-preview",
+    ("openai", "o1_mini"): "o1-mini",
+    ("openai", "o1"): "o1",
+    ("openai", "o1_pro"): "o1-pro",
+    ("openai", "o3_mini"): "o3-mini",
+    ("openai", "o3_high"): "o3 (high)",
+    ("openai", "o4_mini"): "o4-mini",
+    ("openai", "gpt5"): "GPT-5",
     ("claude", "sonnet_3.5"): "Sonnet 3.5",
     ("claude", "sonnet_4"): "Sonnet 4",
+    ("claude", "sonnet_4.5"): "Sonnet 4.5",
+    ("claude", "haiku_4.5"): "Haiku 4.5",
+    ("claude", "opus_4.5"): "Opus 4.5",
+    ("claude", "opus_4.6"): "Opus 4.6",
     ("gemini", "2.0_flash"): "2.0 Flash",
-    ("gemini", "2.5_pro_preview"): "2.5 Pro",
+    ("gemini", "2.5_pro_preview"): "2.5 Pro Prev",
+    ("gemini", "2.5_flash"): "2.5 Flash",
+    ("gemini", "2.5_pro_stable"): "2.5 Pro",
+    ("gemini", "3_pro"): "3 Pro",
+    ("gemini", "3_deep_think"): "3 Deep Think",
+    ("gemini", "3_flash"): "3 Flash",
 }
 
 FAMILY_COLORS = {
-    "chatgpt": "#e8e8e8",
+    "openai": "#e8e8e8",
     "claude": "#f0f0f0",
     "gemini": "#e8e8e8",
 }
@@ -74,7 +104,7 @@ def load_scores(csv_path: str) -> pd.DataFrame:
     return df
 
 
-def compute_composite(row: pd.Series) -> float | None:
+def compute_composite(row: pd.Series):
     """Compute mean numeric score across all dimensions. Returns None if any dimension is missing."""
     values = []
     for dim in DIMENSIONS:
@@ -88,7 +118,7 @@ def compute_composite(row: pd.Series) -> float | None:
     return np.mean(values) if values else None
 
 
-def build_matrix(df: pd.DataFrame) -> tuple[np.ndarray, list[str], list[str]]:
+def build_matrix(df: pd.DataFrame):
     """Build 2D score matrix (models × steps)."""
     steps = sorted(df["step_number"].unique())
     n_models = len(MODEL_ORDER)
@@ -110,10 +140,9 @@ def build_matrix(df: pd.DataFrame) -> tuple[np.ndarray, list[str], list[str]]:
     return matrix, y_labels, x_labels
 
 
-def plot_heatmap(matrix: np.ndarray, y_labels: list[str], x_labels: list[str],
-                 output_path: str) -> None:
+def plot_heatmap(matrix, y_labels, x_labels, output_path):
     """Generate and save the heatmap."""
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 14))
 
     # Custom colormap: red → yellow → green
     from matplotlib.colors import LinearSegmentedColormap

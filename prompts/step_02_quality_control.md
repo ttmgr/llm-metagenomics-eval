@@ -10,18 +10,18 @@
 
 ## Prompt Text
 
-> [PLACEHOLDER: insert exact prompt text]
+> *(Prompt text available in full evaluation dataset)*
 
 ## Expected Ground Truth Response
 
-**Tool:** [PLACEHOLDER: NanoPlot, NanoStat, or equivalent]
-**Key parameters:** [PLACEHOLDER]
+**Tool:** NanoPlot or NanoStat (not explicitly specified in publication; this is an implicit QC step)
+**Key parameters:** Standard nanopore QC metrics — read length distribution, quality scores, N50
 **Output format:** QC reports (HTML/PNG/TSV); no data transformation — FASTQ passes through unchanged
 
 ## Known Failure Modes Observed
 
-[PLACEHOLDER: document specific errors]
+*(Detailed failure analysis available in full evaluation dataset)*
 
 ## Notes
 
-[PLACEHOLDER]
+*(Additional notes available in full evaluation dataset)*

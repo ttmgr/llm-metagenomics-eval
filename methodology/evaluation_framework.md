@@ -39,8 +39,6 @@ This protocol tests:
 - **No error correction.** If a model made an error at step N, the evaluator did not correct it before proceeding to step N+1. This tests error compounding.
 - **Single conversation thread.** Each model was tested in a single continuous conversation, not separate sessions per step.
 
-[PLACEHOLDER: confirm whether any models required session restarts due to context length limits]
-
 ## Scoring Dimensions
 
 ### Why five dimensions?
@@ -92,8 +90,6 @@ All models were tested via their respective web interfaces (ChatGPT, Claude, Gem
 
 LLMs have training data cutoff dates. A model trained before a tool's release cannot be expected to recommend it. However, recommending a deprecated tool when current alternatives exist within the training window is a fair evaluation target.
 
-[PLACEHOLDER: list knowledge cutoff dates for each model version tested]
-
 ### Stochastic variation
 
 LLM outputs are non-deterministic. A single evaluation per model-step combination provides a point estimate, not a distribution. Results should be interpreted as "this model *can* produce this output" rather than "this model *will always* produce this output."
@@ -101,5 +97,3 @@ LLM outputs are non-deterministic. A single evaluation per model-step combinatio
 ### Scope
 
 This evaluation covers one specific pipeline type (nanopore shotgun metagenomics) for one specific sample type (low-biomass environmental). Generalization to other sequencing platforms, library types, or analytical goals requires additional evaluation.
-
-[PLACEHOLDER: additional limitations identified during evaluation]

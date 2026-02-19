@@ -10,24 +10,26 @@
 
 ## Prompt Text
 
-> [PLACEHOLDER: insert exact prompt text as delivered to each model]
+> *(Prompt text available in full evaluation dataset)*
 
 ## Expected Ground Truth Response
 
-**Tool:** Dorado (basecalling + demultiplexing + adapter trimming) and/or Chopper (length/quality filtering)
+**Tools (three-step sequence):**
+1. Guppy v6.3.2 (`r10.4.1_e8.2_400bps_hac`, HAC mode) or Dorado v4.3.0 (`dna_r10.4.1_e8.2_400bps_hac@v4.3.0`)
+2. Porechop v0.2.3 (adapter trimming)
+3. NanoFilt v2.8.0 (quality/length filtering)
 
 **Key parameters:**
-- Correct basecalling model for the chemistry and kit (e.g., `dna_r10.4.1_e8.2_400bps_sup`)
-- Barcode kit specification: `SQK-RBK114-24`
-- Adapter trimming enabled
-- Minimum read length filter (e.g., ≥ 200 bp)
-- Minimum quality filter (e.g., Q ≥ 8)
+- HAC basecalling mode (not SUP, not FAST)
+- Minimum quality score: Q ≥ 8
+- Minimum read length: ≥ 100 bp
+- Only "passed" sequencing reads processed
 
-**Output format:** Per-barcode FASTQ files (gzipped or uncompressed), suitable as direct input for QC tools and downstream processing
+**Output format:** Per-barcode FASTQ files, adapter-trimmed and quality-filtered
 
 ## Known Failure Modes Observed
 
-[PLACEHOLDER: document specific errors each model made at this step]
+*(Detailed failure analysis available in full evaluation dataset)*
 
 ### Examples of expected failures:
 - Recommending Guppy (deprecated) or Albacore (discontinued)

@@ -66,7 +66,7 @@ def has_all_scores(row: pd.Series) -> bool:
     return True
 
 
-def first_fully_correct(df: pd.DataFrame) -> dict[str, str | None]:
+def first_fully_correct(df):
     """Find the first model version per family that got all steps correct."""
     results = {}
     for family in df["model_family"].unique():
@@ -88,7 +88,7 @@ def first_fully_correct(df: pd.DataFrame) -> dict[str, str | None]:
     return results
 
 
-def hardest_step(df: pd.DataFrame) -> list[tuple[int, str, float]]:
+def hardest_step(df):
     """Rank steps by average composite score (lowest = hardest)."""
     step_scores = []
     for step_num in sorted(df["step_number"].unique()):
@@ -111,7 +111,7 @@ def hardest_step(df: pd.DataFrame) -> list[tuple[int, str, float]]:
     return sorted(step_scores, key=lambda x: x[2])
 
 
-def common_failures_per_step(df: pd.DataFrame) -> dict[int, dict[str, str]]:
+def common_failures_per_step(df):
     """Find the most common non-correct score per dimension per step."""
     results = {}
     for step_num in sorted(df["step_number"].unique()):

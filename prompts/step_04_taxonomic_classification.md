@@ -10,18 +10,20 @@
 
 ## Prompt Text
 
-> [PLACEHOLDER: insert exact prompt text]
+> *(Prompt text available in full evaluation dataset)*
 
 ## Expected Ground Truth Response
 
-**Tool:** Kraken2
-**Key parameters:** [PLACEHOLDER: database, confidence threshold, report flags]
-**Output format:** Kraken2 report file + per-read output file
+**Tool:** Kraken2 v2.0.7
+**Key parameters:** NCBI nt database; downsampling per sample type for comparable cross-sample assessment
+**Output format:** Kraken2 report file + per-read classification output
+
+**Benchmarked alternatives:** DIAMOND BLASTx (protein-level), CZID pipeline (hybrid)
 
 ## Known Failure Modes Observed
 
-[PLACEHOLDER: document specific errors]
+*(Detailed failure analysis available in full evaluation dataset)*
 
 ## Notes
 
-[PLACEHOLDER]
+*(Additional notes available in full evaluation dataset)*

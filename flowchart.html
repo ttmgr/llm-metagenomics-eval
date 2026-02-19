@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Evaluation Framework</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #ffffff;
+            color: #334155;
+            min-height: 100vh;
+            padding: 2.5rem 2rem;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .title-block {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .title-block h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: -0.02em;
+        }
+
+        .title-block p {
+            color: #64748b;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .arrow {
+            width: 2px;
+            height: 20px;
+            background: #cbd5e1;
+            position: relative;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid #cbd5e1;
+        }
+
+        .node {
+            border-radius: 10px;
+            padding: 0.7rem 1.1rem;
+            text-align: center;
+            border: 1.5px solid;
+            min-width: 200px;
+        }
+
+        .node .label {
+            font-weight: 600;
+            font-size: 0.78rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .node .detail {
+            font-size: 0.67rem;
+            color: #64748b;
+            line-height: 1.45;
+        }
+
+        .node .detail span {
+            padding: 1px 5px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 1px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.62rem;
+        }
+
+        /* INPUT — slate */
+        .n-input {
+            background: #f8fafc;
+            border-color: #e2e8f0;
+        }
+
+        .n-input .label {
+            color: #334155;
+        }
+
+        /* PROMPT — indigo */
+        .n-prompt {
+            background: #eef2ff;
+            border-color: #c7d2fe;
+        }
+
+        .n-prompt .label {
+            color: #4338ca;
+        }
+
+        .n-prompt .detail span {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        /* RESPONSE — blue */
+        .n-response {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+
+        .n-response .label {
+            color: #1d4ed8;
+        }
+
+        .n-response .detail span {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        /* EVAL — amber */
+        .n-eval {
+            background: #fffbeb;
+            border-color: #fde68a;
+        }
+
+        .n-eval .label {
+            color: #b45309;
+        }
+
+        .n-eval .detail span {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        /* SCORING DIMS — individual pastel colors */
+        .dim-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .dim {
+            border-radius: 8px;
+            padding: 0.5rem 0.4rem;
+            text-align: center;
+            border: 1.5px solid;
+        }
+
+        .dim .label {
+            font-weight: 600;
+            font-size: 0.62rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .dim .detail {
+            font-size: 0.56rem;
+            color: #64748b;
+        }
+
+        .d-tool {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+        .d-tool .label {
+            color: #15803d;
+        }
+
+        .d-param {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+
+        .d-param .label {
+            color: #1d4ed8;
+        }
+
+        .d-output {
+            background: #faf5ff;
+            border-color: #d8b4fe;
+        }
+
+        .d-output .label {
+            color: #7c3aed;
+        }
+
+        .d-sci {
+            background: #fff1f2;
+            border-color: #fecdd3;
+        }
+
+        .d-sci .label {
+            color: #be123c;
+        }
+
+        .d-exec {
+            background: #fff7ed;
+            border-color: #fed7aa;
+        }
+
+        .d-exec .label {
+            color: #c2410c;
+        }
+
+        /* AGGREGATE — green */
+        .n-agg {
+            background: #ecfdf5;
+            border-color: #a7f3d0;
+        }
+
+        .n-agg .label {
+            color: #059669;
+        }
+
+        .n-agg .detail span {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        /* RESULT — rose */
+        .n-result {
+            background: #fff1f2;
+            border-color: #fecdd3;
+        }
+
+        .n-result .label {
+            color: #be123c;
+        }
+
+        .loop-label {
+            font-size: 0.6rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin: 0.2rem 0;
+        }
+
+        /* Step sequence on the left */
+        .step-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .step-num {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #94a3b8;
+            width: 55px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .step-row .node {
+            flex: 1;
+        }
+
+        /* repeat bracket */
+        .repeat-bracket {
+            position: relative;
+            border-left: 2px dashed #cbd5e1;
+            border-top: 2px dashed #cbd5e1;
+            border-bottom: 2px dashed #cbd5e1;
+            padding: 0.6rem 0 0.6rem 1rem;
+            margin-left: 70px;
+            width: calc(100% - 70px);
+            max-width: 630px;
+            border-radius: 6px 0 0 6px;
+        }
+
+        .repeat-label {
+            position: absolute;
+            left: -1px;
+            top: -10px;
+            background: #fff;
+            padding: 0 6px;
+            font-size: 0.58rem;
+            color: #94a3b8;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title-block">
+            <h1>Evaluation Framework</h1>
+            <p>Sequential prompting protocol · 7 steps × 7 models × 5 scoring dimensions</p>
+        </div>
+
+        <div class="flow">
+
+            <!-- Ground Truth -->
+            <div class="step-row">
+                <div class="step-num">REFERENCE</div>
+                <div class="node n-input">
+                    <div class="label">Ground Truth Pipeline</div>
+                    <div class="detail">Published & validated nanopore metagenomics workflow<br>Reska et al., ISME
+                        Communications (2024)</div>
+                </div>
+            </div>
+            <div class="arrow"></div>
+
+            <!-- Repeat bracket for steps 1-7 -->
+            <div class="repeat-bracket">
+                <div class="repeat-label">Repeat for each of 7 pipeline steps</div>
+
+                <!-- Prompt -->
+                <div style="display:flex; flex-direction:column; align-items:center; gap:0;">
+                    <div class="node n-prompt" style="width:100%;">
+                        <div class="label">Standardized Prompt</div>
+                        <div class="detail">
+                            Step objective · previous step context · data constraints<br>
+                            <span>Identical across all models</span>
+                        </div>
+                    </div>
+
+                    <!-- Fan out to 3 models -->
+                    <div style="width:100%; position:relative; height:32px;">
+                        <div
+                            style="position:absolute; left:50%; top:0; transform:translateX(-50%); width:2px; height:10px; background:#cbd5e1;">
+                        </div>
+                        <div style="position:absolute; top:10px; left:10%; right:10%; height:2px; background:#cbd5e1;">
+                        </div>
+                        <div
+                            style="position:absolute; top:10px; left:16.67%; width:2px; height:22px; background:#bfdbfe;">
+                        </div>
+                        <div
+                            style="position:absolute; top:28px; left:calc(16.67% - 4px); border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #bfdbfe;">
+                        </div>
+                        <div style="position:absolute; top:10px; left:50%; width:2px; height:22px; background:#c4b5fd;">
+                        </div>
+                        <div
+                            style="position:absolute; top:28px; left:calc(50% - 4px); border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #c4b5fd;">
+                        </div>
+                        <div
+                            style="position:absolute; top:10px; left:83.33%; width:2px; height:22px; background:#fecdd3;">
+                        </div>
+                        <div
+                            style="position:absolute; top:28px; left:calc(83.33% - 4px); border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #fecdd3;">
+                        </div>
+                    </div>
+
+                    <!-- 3 model responses -->
+                    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem; width:100%;">
+                        <div class="node n-response">
+                            <div class="label">OpenAI</div>
+                            <div class="detail">GPT-4o · o1 · o3 · o4-mini · GPT-5</div>
+                        </div>
+                        <div class="node" style="background:#f5f3ff; border-color:#c4b5fd; border-radius:10px;">
+                            <div class="label" style="color:#7c3aed;">Claude</div>
+                            <div class="detail">Sonnet 3.5 · Sonnet 4 · Opus 4.5 · Opus 4.6</div>
+                        </div>
+                        <div class="node" style="background:#fff1f2; border-color:#fecdd3; border-radius:10px;">
+                            <div class="label" style="color:#be123c;">Gemini</div>
+                            <div class="detail">2.0 Flash · 2.5 Pro · 3 Pro · 3 Flash</div>
+                        </div>
+                    </div>
+
+                    <!-- Merge -->
+                    <div style="width:100%; position:relative; height:28px;">
+                        <div
+                            style="position:absolute; top:0; left:16.67%; right:16.67%; height:2px; background:#cbd5e1;">
+                        </div>
+                        <div style="position:absolute; top:0; left:16.67%; width:2px; height:8px; background:#cbd5e1;">
+                        </div>
+                        <div style="position:absolute; top:0; right:16.67%; width:2px; height:8px; background:#cbd5e1;">
+                        </div>
+                        <div
+                            style="position:absolute; top:0; left:50%; transform:translateX(-50%); width:2px; height:28px; background:#cbd5e1;">
+                        </div>
+                        <div
+                            style="position:absolute; top:24px; left:50%; transform:translateX(-50%) translateX(-4px); border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #cbd5e1;">
+                        </div>
+                    </div>
+
+                    <!-- Evaluation -->
+                    <div class="node n-eval" style="width:100%;">
+                        <div class="label">Evaluate Against Ground Truth</div>
+                        <div class="detail">Compare each response to validated reference</div>
+                    </div>
+
+                    <div class="arrow"></div>
+
+                    <!-- 5 scoring dimensions -->
+                    <div class="dim-grid">
+                        <div class="dim d-tool">
+                            <div class="label">Tool<br>Selection</div>
+                            <div class="detail">C · A · I</div>
+                        </div>
+                        <div class="dim d-param">
+                            <div class="label">Parameter<br>Accuracy</div>
+                            <div class="detail">C · P · I</div>
+                        </div>
+                        <div class="dim d-output">
+                            <div class="label">Output<br>Compat.</div>
+                            <div class="detail">P · F</div>
+                        </div>
+                        <div class="dim d-sci">
+                            <div class="label">Scientific<br>Validity</div>
+                            <div class="detail">S · Q · I</div>
+                        </div>
+                        <div class="dim d-exec">
+                            <div class="label">Execut-<br>ability</div>
+                            <div class="detail">R · M · N</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow" style="margin-top:8px;"></div>
+
+            <!-- Aggregate -->
+            <div class="step-row">
+                <div class="step-num">ANALYSIS</div>
+                <div class="node n-agg">
+                    <div class="label">Aggregate & Visualize</div>
+                    <div class="detail">
+                        <span>scoring_matrix.csv</span> → <span>generate_heatmap.py</span> →
+                        <span>aggregate_scores.py</span>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow"></div>
+
+            <!-- Result -->
+            <div class="step-row">
+                <div class="step-num">FINDING</div>
+                <div class="node n-result">
+                    <div class="label">First Fully Correct Pipeline</div>
+                    <div class="detail">ChatGPT: GPT-5 (high) · Claude: Opus 4.5 · Gemini: 3 Pro</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

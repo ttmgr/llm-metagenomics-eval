@@ -1,50 +1,155 @@
 model_family,model_version,step_number,step_name,tool_selection,parameter_accuracy,output_compatibility,scientific_validity,executability,notes
-chatgpt,gpt4o,1,basecalling,,,,,,
-chatgpt,gpt4o,2,quality_control,,,,,,
-chatgpt,gpt4o,3,host_depletion,,,,,,
-chatgpt,gpt4o,4,taxonomic_classification,,,,,,
-chatgpt,gpt4o,5,assembly,,,,,,
-chatgpt,gpt4o,6,binning,,,,,,
-chatgpt,gpt4o,7,functional_annotation,,,,,,
-chatgpt,o3_mini,1,basecalling,,,,,,
-chatgpt,o3_mini,2,quality_control,,,,,,
-chatgpt,o3_mini,3,host_depletion,,,,,,
-chatgpt,o3_mini,4,taxonomic_classification,,,,,,
-chatgpt,o3_mini,5,assembly,,,,,,
-chatgpt,o3_mini,6,binning,,,,,,
-chatgpt,o3_mini,7,functional_annotation,,,,,,
-chatgpt,o3_high,1,basecalling,,,,,,
-chatgpt,o3_high,2,quality_control,,,,,,
-chatgpt,o3_high,3,host_depletion,,,,,,
-chatgpt,o3_high,4,taxonomic_classification,,,,,,
-chatgpt,o3_high,5,assembly,,,,,,
-chatgpt,o3_high,6,binning,,,,,,
-chatgpt,o3_high,7,functional_annotation,,,,,,
-claude,sonnet_3.5,1,basecalling,,,,,,
-claude,sonnet_3.5,2,quality_control,,,,,,
-claude,sonnet_3.5,3,host_depletion,,,,,,
-claude,sonnet_3.5,4,taxonomic_classification,,,,,,
-claude,sonnet_3.5,5,assembly,,,,,,
-claude,sonnet_3.5,6,binning,,,,,,
-claude,sonnet_3.5,7,functional_annotation,,,,,,
-claude,sonnet_4,1,basecalling,,,,,,
-claude,sonnet_4,2,quality_control,,,,,,
-claude,sonnet_4,3,host_depletion,,,,,,
-claude,sonnet_4,4,taxonomic_classification,,,,,,
-claude,sonnet_4,5,assembly,,,,,,
-claude,sonnet_4,6,binning,,,,,,
-claude,sonnet_4,7,functional_annotation,,,,,,
-gemini,2.0_flash,1,basecalling,,,,,,
-gemini,2.0_flash,2,quality_control,,,,,,
-gemini,2.0_flash,3,host_depletion,,,,,,
-gemini,2.0_flash,4,taxonomic_classification,,,,,,
-gemini,2.0_flash,5,assembly,,,,,,
-gemini,2.0_flash,6,binning,,,,,,
-gemini,2.0_flash,7,functional_annotation,,,,,,
-gemini,2.5_pro_preview,1,basecalling,,,,,,
-gemini,2.5_pro_preview,2,quality_control,,,,,,
-gemini,2.5_pro_preview,3,host_depletion,,,,,,
-gemini,2.5_pro_preview,4,taxonomic_classification,,,,,,
-gemini,2.5_pro_preview,5,assembly,,,,,,
-gemini,2.5_pro_preview,6,binning,,,,,,
-gemini,2.5_pro_preview,7,functional_annotation,,,,,,
+openai,gpt4o,1,basecalling,I,I,F,I,N,Recommended Guppy with wrong model name; Illumina Q30 threshold; ignored R10.4.1 chemistry
+openai,gpt4o,2,quality_control,A,P,P,Q,R,Recommended FastQC (short-read tool) as primary; ignored nanopore context
+openai,gpt4o,3,host_depletion,I,I,F,I,N,Used Bowtie2 with wrong flags; treated as mandatory without context
+openai,gpt4o,4,taxonomic_classification,A,I,F,Q,M,Kraken2 but wrong database and flags; wrong report format
+openai,gpt4o,5,assembly,I,I,F,I,N,Recommended SPAdes (short-read assembler); no polishing; ignored long-read input
+openai,gpt4o,6,binning,I,I,F,I,N,MetaBAT2 alone with wrong input format; 90% completeness threshold; ignored low-biomass context
+openai,gpt4o,7,functional_annotation,I,I,F,Q,N,Prokka only with wrong flags; no AMR tools; single level only
+openai,o1_preview,1,basecalling,A,P,P,Q,M,Recommended Guppy (acceptable) but outdated version and wrong config flags
+openai,o1_preview,2,quality_control,C,C,P,S,R,NanoPlot with correct parameters
+openai,o1_preview,3,host_depletion,A,P,P,Q,R,minimap2 but with wrong preset; ignored air sample context
+openai,o1_preview,4,taxonomic_classification,C,P,P,Q,R,Kraken2 with Standard database instead of nt
+openai,o1_preview,5,assembly,A,I,F,Q,N,MetaFlye correct but no polishing step at all; wrong read type flag
+openai,o1_preview,6,binning,A,P,F,Q,N,MetaBAT2 alone with wrong flags; 70% completeness; no coverage mapping
+openai,o1_preview,7,functional_annotation,A,I,P,Q,M,Prokka + ABRicate but missed AMRFinderPlus; wrong pipeline order
+openai,o1_mini,1,basecalling,I,I,F,I,N,Recommended Albacore (discontinued); completely wrong pipeline order
+openai,o1_mini,2,quality_control,A,P,P,Q,R,FastQC only; ignored nanopore-specific metrics
+openai,o1_mini,3,host_depletion,I,I,F,I,N,BWA-MEM (short-read aligner); wrong flags throughout
+openai,o1_mini,4,taxonomic_classification,A,I,F,Q,N,Kraken2 with wrong confidence threshold and wrong database
+openai,o1_mini,5,assembly,I,I,F,I,N,MEGAHIT (short-read assembler); ignored long-read input entirely
+openai,o1_mini,6,binning,I,I,F,I,N,MaxBin2 alone with wrong input format; no quality assessment at all
+openai,o1_mini,7,functional_annotation,I,I,F,Q,N,Prokka with wrong flags; no AMR tools; wrong pipeline order
+openai,o1,1,basecalling,A,P,P,Q,M,Dorado correct but wrong model name; missed Porechop step; Q15 threshold
+openai,o1,2,quality_control,C,C,P,S,R,NanoPlot recommended correctly
+openai,o1,3,host_depletion,C,P,P,Q,R,minimap2 correct but wrong preset flag
+openai,o1,4,taxonomic_classification,C,P,P,S,R,Kraken2 with nt database; missed report format flag
+openai,o1,5,assembly,A,P,F,Q,M,MetaFlye correct but only 1 round polish with Medaka; wrong read type flag
+openai,o1,6,binning,A,P,F,Q,M,metaWRAP but 50% completeness threshold; wrong flag order; no coverage step
+openai,o1,7,functional_annotation,A,P,P,Q,M,AMRFinderPlus on contigs only; missed read-level; wrong flags
+openai,o1_pro,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt correct sequence
+openai,o1_pro,2,quality_control,C,C,P,S,R,NanoPlot with comprehensive parameters
+openai,o1_pro,3,host_depletion,C,C,P,S,R,minimap2; discussed sample context appropriately
+openai,o1_pro,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; mentioned downsampling
+openai,o1_pro,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon polishing
+openai,o1_pro,6,binning,C,P,P,S,R,metaWRAP + CheckM; used 50% completeness
+openai,o1_pro,7,functional_annotation,C,P,P,Q,R,AMRFinderPlus + ABRicate on contigs and bins; missed reads
+openai,o3_mini,1,basecalling,A,P,P,Q,M,Dorado correct but used Chopper with wrong flags; wrong quality threshold
+openai,o3_mini,2,quality_control,C,P,P,S,R,NanoPlot correct but incomplete parameters
+openai,o3_mini,3,host_depletion,C,P,P,Q,R,minimap2 correct but ignored sample context
+openai,o3_mini,4,taxonomic_classification,C,P,P,Q,R,Kraken2 + nt but wrong report flags
+openai,o3_mini,5,assembly,A,P,F,Q,M,MetaFlye correct but only 1 round Medaka; wrong read flag
+openai,o3_mini,6,binning,A,P,F,Q,M,metaWRAP but wrong flags; 60% completeness; ignored low-biomass
+openai,o3_mini,7,functional_annotation,A,P,P,Q,M,AMRFinderPlus on contigs only; wrong flags; missed ABRicate
+openai,o3_high,1,basecalling,C,P,P,S,R,Dorado + Porechop + NanoFilt correct but slightly wrong NanoFilt flags
+openai,o3_high,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+openai,o3_high,3,host_depletion,C,C,P,S,R,minimap2; noted low host contamination in air samples
+openai,o3_high,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; discussed downsampling strategy
+openai,o3_high,5,assembly,C,P,P,S,M,MetaFlye + 2x Racon (not 3x); correct read flag
+openai,o3_high,6,binning,A,P,P,Q,R,metaWRAP + CheckM but 50% completeness; ignored low-biomass
+openai,o3_high,7,functional_annotation,A,P,P,Q,R,AMRFinderPlus + ABRicate; contigs and bins only; missed reads
+openai,o4_mini,1,basecalling,A,P,P,Q,M,Dorado + Chopper (acceptable) but wrong quality threshold and flags
+openai,o4_mini,2,quality_control,C,C,P,S,R,NanoPlot correct
+openai,o4_mini,3,host_depletion,C,P,P,Q,R,minimap2 correct but ignored input context about air samples
+openai,o4_mini,4,taxonomic_classification,C,P,P,S,R,Kraken2 + nt but wrong report flag
+openai,o4_mini,5,assembly,C,P,P,Q,M,MetaFlye + 2x Racon; wrong read type flag
+openai,o4_mini,6,binning,A,P,F,Q,M,metaWRAP + CheckM but 60% completeness; wrong pipeline order for binning
+openai,o4_mini,7,functional_annotation,A,P,P,Q,M,AMRFinderPlus on contigs and bins; missed read-level; wrong flags
+openai,gpt5,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; correct three-tool sequence
+openai,gpt5,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+openai,gpt5,3,host_depletion,C,C,P,S,R,minimap2; correctly noted optional for air samples
+openai,gpt5,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; mentioned DIAMOND as alternative
+openai,gpt5,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon + mentioned pooling for urban samples
+openai,gpt5,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness for low-biomass
+openai,gpt5,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
+claude,sonnet_3.5,1,basecalling,I,I,F,I,N,Guppy with completely wrong config; ignored R10.4.1 input; wrong pipeline order
+claude,sonnet_3.5,2,quality_control,A,P,P,Q,R,FastQC as primary (wrong tool for nanopore)
+claude,sonnet_3.5,3,host_depletion,A,I,F,Q,N,minimap2 but with wrong preset and wrong flags
+claude,sonnet_3.5,4,taxonomic_classification,C,P,P,Q,R,Kraken2 but PlusPF database; wrong report flags
+claude,sonnet_3.5,5,assembly,A,I,F,Q,N,MetaFlye but Medaka polishing with wrong flags; no --meta flag
+claude,sonnet_3.5,6,binning,I,I,F,I,N,MetaBAT2 with wrong input; 90% completeness; no quality assessment
+claude,sonnet_3.5,7,functional_annotation,I,I,F,Q,N,Prokka only with wrong flags; no AMR tools; ignored multi-level
+claude,sonnet_4,1,basecalling,A,P,P,Q,M,Dorado + Porechop correct tools but wrong NanoFilt flags; Q12 threshold
+claude,sonnet_4,2,quality_control,C,C,P,S,R,NanoPlot comprehensive
+claude,sonnet_4,3,host_depletion,C,P,P,Q,R,minimap2 + samtools correct but ignored air sample context
+claude,sonnet_4,4,taxonomic_classification,C,P,P,S,R,Kraken2 + nt database but wrong confidence flag
+claude,sonnet_4,5,assembly,A,P,F,Q,M,MetaFlye + Racon but wrong number of rounds; wrong read flag
+claude,sonnet_4,6,binning,A,P,F,Q,M,metaWRAP + CheckM but 70% completeness; wrong flag order
+claude,sonnet_4,7,functional_annotation,A,P,P,Q,M,AMRFinderPlus + ABRicate on contigs only; wrong pipeline order
+claude,sonnet_4.5,1,basecalling,A,P,P,Q,M,Dorado + Porechop correct but wrong NanoFilt parameters
+claude,sonnet_4.5,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+claude,sonnet_4.5,3,host_depletion,C,P,P,Q,R,minimap2 correct but ignored air sample details
+claude,sonnet_4.5,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; mentioned downsampling
+claude,sonnet_4.5,5,assembly,C,P,P,Q,M,MetaFlye + 2x Racon (not 3x); correct read flag
+claude,sonnet_4.5,6,binning,A,P,F,Q,M,metaWRAP + CheckM but 50% completeness; wrong flag syntax
+claude,sonnet_4.5,7,functional_annotation,A,P,P,Q,M,AMRFinderPlus + ABRicate contigs/bins; missed read-level
+claude,haiku_4.5,1,basecalling,C,P,P,S,R,Dorado correct; used Chopper; Q10 threshold
+claude,haiku_4.5,2,quality_control,C,C,P,S,R,NanoPlot correct
+claude,haiku_4.5,3,host_depletion,C,C,P,S,R,minimap2 correct
+claude,haiku_4.5,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt
+claude,haiku_4.5,5,assembly,C,P,P,S,M,MetaFlye + 2 rounds Racon
+claude,haiku_4.5,6,binning,A,P,P,Q,R,MetaBAT2 + SemiBin2; CheckM2; 50% completeness
+claude,haiku_4.5,7,functional_annotation,C,P,P,Q,R,AMRFinderPlus + ABRicate; contigs only
+claude,opus_4.5,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+claude,opus_4.5,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat comprehensive
+claude,opus_4.5,3,host_depletion,C,C,P,S,R,minimap2; noted optional for environmental air
+claude,opus_4.5,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; mentioned DIAMOND + CZID alternatives
+claude,opus_4.5,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon; noted pooling strategy
+claude,opus_4.5,6,binning,C,C,P,S,R,metaWRAP ensemble + CheckM; 30% completeness
+claude,opus_4.5,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
+claude,opus_4.6,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+claude,opus_4.6,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+claude,opus_4.6,3,host_depletion,C,C,P,S,R,minimap2; excellent context discussion
+claude,opus_4.6,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; comprehensive alternatives
+claude,opus_4.6,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon; correct
+claude,opus_4.6,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness
+claude,opus_4.6,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
+gemini,2.0_flash,1,basecalling,I,I,F,I,N,Guppy with completely wrong config; Illumina params; wrong pipeline order
+gemini,2.0_flash,2,quality_control,I,I,F,Q,N,FastQC only; ignored nanopore context entirely; wrong flags
+gemini,2.0_flash,3,host_depletion,I,I,F,I,N,BWA-MEM (wrong tool); wrong flags; wrong pipeline order
+gemini,2.0_flash,4,taxonomic_classification,A,I,F,Q,N,Kraken2 but Standard database; wrong flags; no report format
+gemini,2.0_flash,5,assembly,I,I,F,I,N,SPAdes meta mode (wrong tool); no polishing; ignored input details
+gemini,2.0_flash,6,binning,I,I,F,I,N,MetaBAT2 with wrong input format; no quality check; wrong order
+gemini,2.0_flash,7,functional_annotation,I,I,F,I,N,Prokka only with wrong flags; no AMR tools; wrong pipeline order
+gemini,2.5_pro_preview,1,basecalling,C,P,P,S,R,Dorado correct; Chopper instead of Porechop+NanoFilt
+gemini,2.5_pro_preview,2,quality_control,C,C,P,S,R,NanoPlot correct
+gemini,2.5_pro_preview,3,host_depletion,C,C,P,S,R,minimap2 correct
+gemini,2.5_pro_preview,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt correct
+gemini,2.5_pro_preview,5,assembly,C,P,P,S,M,MetaFlye + Medaka (acceptable); 1 round only
+gemini,2.5_pro_preview,6,binning,C,P,P,Q,R,metaWRAP + CheckM; 50% completeness
+gemini,2.5_pro_preview,7,functional_annotation,A,P,P,Q,R,AMRFinderPlus on contigs only; missed ABRicate
+gemini,2.5_flash,1,basecalling,A,P,P,Q,M,Dorado correct but Chopper with wrong flags; wrong length filter
+gemini,2.5_flash,2,quality_control,C,P,P,S,R,NanoPlot correct but incomplete flags
+gemini,2.5_flash,3,host_depletion,A,P,P,Q,M,minimap2 but wrong preset; ignored sample context
+gemini,2.5_flash,4,taxonomic_classification,C,P,P,Q,R,Kraken2 + nt but wrong report flags
+gemini,2.5_flash,5,assembly,A,P,F,Q,M,MetaFlye but wrong read flag; only 1 round Racon; ignored input
+gemini,2.5_flash,6,binning,A,I,F,Q,N,metaWRAP but wrong flags throughout; 70% completeness; wrong order
+gemini,2.5_flash,7,functional_annotation,A,I,F,Q,N,AMRFinderPlus contigs only; wrong flags; ignored multi-level input
+gemini,2.5_pro_stable,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt correct
+gemini,2.5_pro_stable,2,quality_control,C,C,P,S,R,NanoPlot comprehensive
+gemini,2.5_pro_stable,3,host_depletion,C,C,P,S,R,minimap2; noted environmental context
+gemini,2.5_pro_stable,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; downsampling mentioned
+gemini,2.5_pro_stable,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon correct
+gemini,2.5_pro_stable,6,binning,C,P,P,S,R,metaWRAP + CheckM; 50% completeness
+gemini,2.5_pro_stable,7,functional_annotation,C,P,P,Q,R,AMRFinderPlus + ABRicate; contigs and bins only
+gemini,3_pro,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+gemini,3_pro,2,quality_control,C,C,P,S,R,NanoPlot + NanoStat
+gemini,3_pro,3,host_depletion,C,C,P,S,R,minimap2; excellent sample context awareness
+gemini,3_pro,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; DIAMOND alternative mentioned
+gemini,3_pro,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon; pooling noted
+gemini,3_pro,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness for low-biomass
+gemini,3_pro,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
+gemini,3_deep_think,1,basecalling,C,C,P,S,R,Dorado + Porechop + NanoFilt; fully correct
+gemini,3_deep_think,2,quality_control,C,C,P,S,R,NanoPlot comprehensive
+gemini,3_deep_think,3,host_depletion,C,C,P,S,R,minimap2; excellent reasoning about necessity
+gemini,3_deep_think,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; comprehensive discussion
+gemini,3_deep_think,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon correct
+gemini,3_deep_think,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% thresholds
+gemini,3_deep_think,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all levels
+gemini,3_flash,1,basecalling,A,P,P,Q,M,Dorado + Chopper but wrong flags; wrong quality threshold
+gemini,3_flash,2,quality_control,C,C,P,S,R,NanoPlot correct
+gemini,3_flash,3,host_depletion,C,P,P,Q,R,minimap2 correct but ignored air sample context
+gemini,3_flash,4,taxonomic_classification,C,P,P,S,R,Kraken2 + nt but wrong report flag
+gemini,3_flash,5,assembly,C,P,P,Q,M,MetaFlye + 2x Racon; wrong read flag
+gemini,3_flash,6,binning,A,P,F,Q,M,metaWRAP + CheckM but 60% completeness; wrong binning order
+gemini,3_flash,7,functional_annotation,A,P,P,Q,M,AMRFinderPlus + ABRicate; missed read-level; wrong flags

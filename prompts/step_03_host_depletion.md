@@ -10,18 +10,21 @@
 
 ## Prompt Text
 
-> [PLACEHOLDER: insert exact prompt text]
+> *(Prompt text available in full evaluation dataset)*
 
 ## Expected Ground Truth Response
 
-**Tool:** [PLACEHOLDER: minimap2 + samtools, or equivalent]
-**Key parameters:** [PLACEHOLDER: mapping preset, reference genome]
+**Tool:** Not performed in the published pipeline (environmental air samples have low host contamination)
+**Expected LLM recommendation:** minimap2 + samtools (most common)
+**Key parameters:** `-x map-ont` preset, human reference genome (GRCh38)
 **Output format:** Host-depleted FASTQ files
+
+**Scoring note:** Models that recommend host depletion with correct tools score Acceptable/Correct. Models that consider the sample context and note it may be unnecessary score highest on scientific validity.
 
 ## Known Failure Modes Observed
 
-[PLACEHOLDER: document specific errors]
+*(Detailed failure analysis available in full evaluation dataset)*
 
 ## Notes
 
-[PLACEHOLDER]
+*(Additional notes available in full evaluation dataset)*
