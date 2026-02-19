@@ -6,6 +6,8 @@
 
 This repository documents a structured evaluation of large language models (LLMs) for their ability to generate correct, production-ready nanopore metagenomics pipelines through sequential prompting.
 
+> "During my PhD, I noticed that while everyone was using LLMs to write code, the existing benchmarks were completely missing how bioinformatics pipelines actually fail in the real world. So, independently, I designed and built a stateless, cumulative testing framework to evaluate 22 different models across a full metagenomics pipeline. It proves why models fail at data-state routing even when their code syntax is perfect." — *Tim Reska*
+
 Most existing LLM benchmarks for code generation test isolated tasks: "write a function that does X." But real bioinformatics pipeline development is sequential — each step produces output that becomes input for the next, tool choices constrain downstream options, and errors compound. A model that selects the wrong tool at step 3 will produce a pipeline that fails at step 4, even if every subsequent code block is syntactically correct.
 
 This evaluation tests whether LLMs can maintain scientific and technical correctness across a full pipeline, not just within individual steps.
