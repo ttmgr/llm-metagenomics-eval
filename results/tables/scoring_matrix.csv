@@ -139,7 +139,6 @@ gemini,3_pro,4,taxonomic_classification,C,C,P,S,R,Kraken2 + nt; DIAMOND alternat
 gemini,3_pro,5,assembly,C,C,P,S,R,MetaFlye + 3x Racon; pooling noted
 gemini,3_pro,6,binning,C,C,P,S,R,metaWRAP + CheckM; 30% completeness for low-biomass
 gemini,3_pro,7,functional_annotation,C,C,P,S,R,AMRFinderPlus + ABRicate + seqkit; all three levels
-
 gemini,3_flash,1,basecalling,A,P,P,Q,M,Dorado + Chopper but wrong flags; wrong quality threshold
 gemini,3_flash,2,quality_control,C,C,P,S,R,NanoPlot correct
 gemini,3_flash,3,host_depletion,C,P,P,Q,R,minimap2 correct but ignored air sample context
