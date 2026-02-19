@@ -77,15 +77,15 @@ The reference pipeline is the validated workflow from:
 
 This pipeline processes Oxford Nanopore long-read sequencing data from low-biomass environmental samples generated with the Rapid Barcoding Kit (RBK114.24). It was developed, validated, and published independently of any LLM assistance.
 
-### Sequential prompting protocol
+### Stateless Cumulative Prompting Protocol
 
-Each model was evaluated using the same sequence of prompts, where each prompt:
+To prevent model degradation caused by context-window pollution in long chat histories, we evaluated each model using a strict stateless, unit-to-integration testing framework. This directly mirrors how production bioinformatics pipelines are developed: testing commands locally first, then wrapping them into cohesive bash scripts.
 
-1. Specifies the pipeline step to implement
-2. Provides the output context from the previous step
-3. Requests runnable code with tool selection rationale
+For each model, the evaluation followed a cumulative progression:
 
-The prompts were designed to simulate how a scientist actually develops a workflow in conversation with an LLM — incrementally, building each step on the last. See [`methodology/evaluation_framework.md`](methodology/evaluation_framework.md) for the full protocol.
+1. **Phase 1: Unit Testing (Isolated Tools):** We tested the model's domain knowledge of individual pipeline steps in completely isolated, fresh chat sessions. For example, a prompt would ask: "Write the command to basecall Nanopore FAST5 air metagenomic data (R10.4.1, RBK114.24 kit)."
+2. **Phase 2: Integration Testing (Pipeline Chaining):** If—and only if—the model produced scientifically valid and executable code for isolated steps (e.g., Step A and Step B), we opened a new, fresh chat and prompted it to write a combined pipeline script executing Step A followed by Step B.
+3. **Cumulative State-Passing:** We built the pipeline cumulatively (Basecalling → QC → Host Depletion → Taxonomy → Assembly → Binning → Annotation). The human evaluator manually passed the output file types and biological context of the previous step into the new stateless prompt. A model only progressed to the next integration step if it successfully completed the preceding sequence.
 
 ### Models tested
 
@@ -174,7 +174,7 @@ The radar charts reveal how each model family improves across the five evaluatio
 
 ### Key observations
 
-1. **Compounding failures:** Errors at early steps (especially step 1: basecalling) cascade through the entire pipeline. A model recommending Albacore (discontinued) or SPAdes (short-read assembler) produces unusable output that invalidates all downstream steps.
+1. **Compounding failures (State Poisoning):** Because we used stateless chats, compounding errors were not due to "conversational hallucination" (LLMs getting confused by chat history). Rather, if a model recommended an incorrect tool in an early step (e.g., using the short-read assembler SPAdes in Step 5), that scientifically flawed state (contigs.fasta from a short-read tool) was passed into the prompt for Step 6. The pipeline broke mathematically and biologically in subsequent steps, mimicking exactly how undetected upstream errors silently ruin downstream results in real-world data flows.
 
 2. **Hardest steps** (average composite score across all models):
    - **Binning** (0.54) — models default to single binning tools instead of ensemble approaches, use inappropriate completeness thresholds (≥50–90% instead of ≥30%), and often produce wrong pipeline order for mapping/binning
@@ -241,7 +241,7 @@ The evaluation methodology is designed to be **domain-agnostic**. To adapt it to
 
 - **Interface dependence:** Models were tested via web interfaces, not APIs. Temperature, system prompt, and other parameters may differ between access methods and affect reproducibility.
 - **Knowledge cutoff bias:** Newer models may benefit from training on more recent bioinformatics literature, including potentially the ground truth publication itself. This is noted but not controlled for.
-- **Sequential dependency by design:** Earlier errors influence later responses. This reflects real-world usage patterns but complicates per-step capability isolation.
+- **Sequential dependency by design:** By manually passing the output states of previous steps into fresh chats, earlier errors fundamentally poison later responses. While this accurately simulates how real-world data pipelines fail when scientists blindly trust preceding steps, it complicates the strict isolation of per-step capabilities for models that failed early in the pipeline.
 - **Single ground truth:** The reference pipeline represents one validated approach for one data type. Alternative valid approaches exist, and the scoring framework accounts for this via the "Acceptable" category. Extending to additional ground truths would strengthen generalizability.
 - **Sample size:** One evaluation per model version per step. LLM outputs are stochastic; repeated runs may yield different results. A production evaluation would require multiple independent runs per configuration.
 - **Rater subjectivity:** Scoring was performed by a single domain expert. Inter-rater reliability studies would strengthen the framework for high-stakes applications.
