@@ -200,7 +200,7 @@ The radar charts reveal how each model family improves across the five evaluatio
 ```
 llm-eval/
 ├── flowchart.html                    Interactive evaluation framework diagram
-├── methodology/                      Evaluation protocol, scoring rubrics, ground truth pipeline
+├── methodology/                      Evaluation protocol, scoring rubrics, ground truth, AI productivity tools
 ├── prompts/                          Standardized prompts used for each pipeline step
 ├── responses/                        Raw, unedited LLM responses organized by model family/version
 ├── evaluations/                      Scored evaluations organized by step and by model
@@ -218,6 +218,7 @@ llm-eval/
 2. Review [`methodology/pipeline_reference.md`](methodology/pipeline_reference.md) for the ground truth pipeline
 3. Browse `evaluations/by_step/` to see how models performed on specific pipeline stages
 4. Check `evaluations/by_model/` to track improvement across model versions
+5. See [`methodology/AI_PRODUCTIVITY_TOOLS.md`](methodology/AI_PRODUCTIVITY_TOOLS.md) for a categorized directory of AI tools and prompting cheat sheets for major LLMs.
 
 ### For AI researchers studying domain-specific code generation
 
