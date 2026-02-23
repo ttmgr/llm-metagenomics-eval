@@ -200,7 +200,7 @@ The radar charts reveal how each model family improves across the five evaluatio
 ```
 llm-eval/
 ├── flowchart.html                    Interactive evaluation framework diagram
-├── methodology/                      Evaluation protocol, scoring rubrics, ground truth, AI productivity tools
+├── methodology/                      Evaluation protocol, scoring rubrics, ground truth, AI productivity tools, Guides
 ├── prompts/                          Standardized prompts used for each pipeline step
 ├── responses/                        Raw, unedited LLM responses organized by model family/version
 ├── evaluations/                      Scored evaluations organized by step and by model
@@ -219,6 +219,8 @@ llm-eval/
 3. Browse `evaluations/by_step/` to see how models performed on specific pipeline stages
 4. Check `evaluations/by_model/` to track improvement across model versions
 5. See [`methodology/AI_PRODUCTIVITY_TOOLS.md`](methodology/AI_PRODUCTIVITY_TOOLS.md) for a categorized directory of AI tools and prompting cheat sheets for major LLMs.
+6. See [`methodology/claude_cowork_setup.md`](methodology/claude_cowork_setup.md) for practical setup, workarounds, and skill strategies for Claude Cowork.
+7. See [`methodology/citation_checker_manual.md`](methodology/citation_checker_manual.md) for an advanced workflow using Claude Cowork + Firefox to cross-reference citations.
 
 ### For AI researchers studying domain-specific code generation
 
