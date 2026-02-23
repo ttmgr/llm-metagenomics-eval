@@ -1,6 +1,6 @@
 # AI Productivity Tools & Cheat Sheets
 
-> A categorized directory of AI tools across common productivity use cases, alongside prompting cheat sheets for major LLMs.
+> A categorized directory of AI tools across common productivity use cases, alongside prompting cheat sheets for major LLMs. Updated February 2026.
 
 ---
 
@@ -81,17 +81,17 @@
 
 ### AI Knowledge Management
 - Mem
-- Notion
+- Notion AI
 - Tettra
 
 ### AI Coding Assistance
 - Askcodi
-- Codiga
 - Cursor
 - GitHub Copilot
 - Qodo
 - Replit
 - Tabnine
+- Windsurf
 
 ### AI Meeting Notes
 - Avoma
@@ -99,8 +99,10 @@
 - Fathom
 - Fellow.App
 - Fireflies
+- Granola
 - Krisp
 - Otter
+- tl;dv
 
 ### AI Video Generation
 - Descript
@@ -135,7 +137,7 @@
 - Design.com
 - Framer
 - Microsoft Designer
-- Ulizard
+- Uizard
 
 ### AI Data Visualization
 - Deckpilot
@@ -150,21 +152,25 @@
 
 ### ChatGPT Cheat Sheet
 > Prompting, Models, Features & Key Terms  
-> *Based on the guide by Andrew Bolis — FreeGuides.cc*
+> Updated February 2026
 
 #### 1. Models & Features
 
 | Model / Feature | Description |
 |---|---|
-| **GPT-5 Instant** | Fast responses for simple and easy questions. |
-| **GPT-5 Thinking** | Tasks that need deep reasoning (slower but smarter). |
-| **GPT-5 Auto** | Let AI decide how long to think and reason. |
-| **GPT-4o** | Legacy model (if you prefer using the older model). |
-| **Deep Research** | For tasks that need multiple reliable sources. |
-| **Create Image** | Turn prompts into AI-generated images. |
-| **Web Search** | Finds up-to-date info from the internet. |
-| **Canvas** | Visual space to plan and organize ideas. |
-| **Agent Mode** | Runs multi-step tasks using AI agents. |
+| **GPT-5.2 Instant** | Fast, conversational responses for everyday tasks; default model for free and Go plan users. |
+| **GPT-5.2 Thinking** | Deep reasoning mode with configurable think levels (Light / Standard / Extended); best for complex analysis, coding, and multi-step tasks. |
+| **GPT-5.2 Pro** | Highest-capability tier; available on the Pro plan for the most demanding use cases. |
+| **Deep Research** | Agentic capability to autonomously search the web and compile comprehensive reports; redesigned UI with editable research plans. |
+| **Prism** | New AI-native research workspace for long-form collaboration and document synthesis. |
+| **Memory** | Remembers preferences and context across all chats; fully user-controllable. |
+| **Create Image** | Turn prompts into AI-generated images via DALL-E integration. |
+| **Web Search** | Real-time internet search integrated into responses, including visual highlights and side-panel fact cards. |
+| **Canvas** | Collaborative visual space to write, edit, and iterate on documents or code. |
+| **Voice / Realtime API** | Voice as a first-class interface with natural speech and multi-turn speech-to-speech agent support. |
+| **Operator / Agent Mode** | Runs multi-step agentic tasks autonomously, including browser and computer interactions. |
+
+> **Note:** GPT-4o, GPT-4.1, GPT-4.1 mini, and o4-mini were retired from ChatGPT on February 13, 2026.
 
 #### 2. Prompting Tips & Techniques
 
@@ -199,7 +205,6 @@
 | **CARE** | Context, Action, Result, Example |
 
 #### 4. Prompting Best Practices
-
 - **Role + Guidelines** — Set context instead of starting abruptly.
 - **Add good examples** — Show what a strong answer looks like (Few-Shot Prompting).
 - **Request self-checks** — Ask GPT to review or rate its own output.
@@ -208,7 +213,7 @@
 - **Follow up** — Keep refining until the output feels right.
 - **Avoid complexity** — Break complex tasks into smaller, sequential steps (Chain of Thought).
 - **Focus on your reader** — Center your prompt around your intended audience's needs.
-- **Use open-ended questions** — Instead of yes/no, dig into *what* and *how*.
+- **Use open-ended questions** — Instead of yes/no, dig into what and how.
 - **Rate and improve content** — Ask GPT to score weak areas and suggest fixes.
 - **Try prompt extensions** — Use tools or custom instructions to enhance capabilities.
 
@@ -229,44 +234,55 @@
 
 ### Claude Cheat Sheet
 > Prompting, Models, Features & Key Terms  
+> Updated February 2026
 
 #### 1. Models & Features
 
 | Model / Feature | Description |
 |---|---|
-| **Claude 3.5 Sonnet** | The most balanced model, incredibly fast and highly capable at coding and complex tasks. |
-| **Claude 3 Opus** | Legacy heavyweight model. |
-| **Claude 3.5 Haiku** | Extremely fast and cost-effective for simpler, rapid tasks. |
-| **Artifacts** | A dedicated UI pane for displaying, editing, and previewing generated code, documents, and SVGs. |
-| **Projects** | Workspaces where you can upload extensive custom knowledge bases (documents, codebase) to ground answers. |
-| **Computer Use (API)** | Allows Claude to interact with computer interfaces by looking at screens and controlling the mouse/keyboard. |
+| **Claude Opus 4.6** | Most intelligent Claude model; optimized for agentic tasks, complex coding, and long-context reasoning. Supports 200K context window (1M token beta) and 128K max output tokens. |
+| **Claude Sonnet 4.6** | Best balance of speed and intelligence; upgraded across coding, computer use, agent planning, and design. Supports 1M token context window in beta. Released February 17, 2026. |
+| **Claude 3.5 Haiku** | Fastest and most cost-effective Claude model for high-frequency, simpler tasks. |
+| **Adaptive Thinking** | Claude dynamically decides how much to reason before answering; configurable via API with effort levels: low, medium, high, max. |
+| **Context Compaction** | Automatically summarizes older context as conversations approach limits, enabling effectively infinite conversation length. |
+| **Artifacts** | Dedicated UI pane for displaying, editing, and previewing generated code, documents, and SVGs. |
+| **Projects** | Workspaces to upload extensive custom knowledge bases (documents, codebases) to ground answers. |
+| **Computer Use (API)** | Claude interacts with computer interfaces by looking at screens and controlling the mouse/keyboard. |
+| **Agent Teams (Claude Code)** | Assemble multiple Claude agents to collaborate on complex tasks in parallel. |
 
 #### 2. Prompting Tips & Techniques
 
-*(Claude excels at nuances and explicit instructions. Same general techniques apply as ChatGPT, plus:)*
+*(Claude excels at nuance and explicit instructions. Same general techniques apply as ChatGPT, plus:)*
 
 | Technique | Description |
 |---|---|
-| **Use XML Tags** | `<context>`, `<instructions>`, `<example>` to structure prompts. Claude is explicitly trained on XML tags. |
-| **Give it room to think** | Ask Claude to `<thinking>` process step-by-step `</thinking>` before giving the final `<answer>`. |
-| **Prefill Claude's response** | End your prompt with the opening bracket (e.g., `Here is JSON: {`) to force output structure. |
+| **Use XML Tags** | `<context>`, `<instructions>`, `<example>` to structure prompts — Claude is explicitly trained on XML-structured input. |
+| **Give it room to think** | Adaptive thinking is on by default; for API use, set `thinking: {type: "adaptive"}` with an effort level. |
+| **Prefill Claude's response** | End your prompt with an opening token (e.g., `Here is JSON: {`) to force output structure. |
 | **Clear negative constraints** | Explicitly tell Claude what *not* to do (e.g., "Do not apologize", "Do not write an introduction"). |
+| **Leverage 1M token context** | Pass entire codebases, papers, or lengthy documents in a single Opus/Sonnet 4.6 prompt for deep analysis. |
 
 ---
 
 ### Gemini Cheat Sheet
 > Prompting, Models, Features & Key Terms  
+> Updated February 2026
 
 #### 1. Models & Features
 
 | Model / Feature | Description |
 |---|---|
-| **Gemini 2.5 Pro** | Google's flagship multimodal reasoning model, excellent at immense context (2M+ tokens). |
-| **Gemini 2.5 Flash** | Extremely fast, multimodal model built for high-frequency tasks. |
-| **Gemini Deep Research** | Specialized agentic capability to autonomously search the web and compile comprehensive reports. |
-| **Google Workspace Integration** | Natively connects to Google Drive, Docs, Gmail, to summarize, find, and draft content based on your personal data. |
+| **Gemini 3.1 Pro** | Google's latest flagship model; upgraded core reasoning for complex problem-solving across text, images, video, audio, and PDFs. 1M token context window. Released February 19, 2026 in preview. |
+| **Gemini 3.1 Pro Preview (API)** | Available now for developers via Gemini API, AI Studio, Vertex AI, Google Antigravity, and Android Studio. Also available in NotebookLM for Pro/Ultra users. |
+| **Gemini 3 Flash** | Fast, multimodal model for high-frequency tasks with strong performance-to-cost ratio; Gemini 3 series launched November 2025. |
+| **Gemini 3 Deep Think** | Specialized reasoning variant updated in February 2026; optimized for science, research, and engineering challenges. |
+| **Gemini Deep Research** | Agentic capability to autonomously search the web and compile comprehensive reports. |
+| **Google Workspace Integration** | Natively connects to Google Drive, Docs, Gmail, and Calendar to summarize, find, and draft content based on personal data. |
 | **Gems** | Custom versions of Gemini tailored with specific instructions and knowledge (similar to custom GPTs). |
 | **Native Multimodality** | Processes images, audio, video, and text inherently without converting them to text first. |
+| **Computer Use (API)** | Gemini 3 Pro and Flash support the Computer Use tool for agentic interaction with interfaces. |
+
+> **Note:** Gemini 2.0 Flash, 2.0 Flash Lite, and related models are deprecated as of February 18, 2026, with shutdown scheduled for June 1, 2026.
 
 #### 2. Prompting Tips & Techniques
 
@@ -278,3 +294,28 @@
 | **Workspace Prompting** | Use `@` directly in prompt to query specific Google Docs or Gmail threads. |
 | **Data Extraction via Video** | Upload a video walkthrough and ask for timestamps or operational summaries. |
 | **Structured Output** | Explicitly request clean JSON or CSV formats, especially when extracting from provided documents. |
+| **1M Token Context** | Pass entire codebases, books, or lengthy research papers in a single 3.1 Pro prompt. |
+| **Custom Tools Endpoint** | For developers mixing bash and tools, use the `gemini-3.1-pro-preview-customtools` endpoint for better tool prioritization. |
+
+---
+
+### DeepSeek Cheat Sheet
+> Prompting, Models, Features & Key Terms  
+
+#### 1. Models & Features
+
+| Model / Feature | Description |
+|---|---|
+| **DeepSeek-R1** | Frontier-class open-source reasoning model; matches top closed-source models on math, science, and coding benchmarks. |
+| **DeepSeek-V3** | High-performance, cost-efficient general-purpose model for writing, analysis, and instruction-following. |
+| **Chain-of-Thought (built-in)** | DeepSeek-R1 natively shows its reasoning steps, making it highly transparent for complex problem-solving. |
+| **Open Weights** | Model weights are publicly available, enabling local deployment and fine-tuning without API dependency. |
+
+#### 2. Prompting Tips & Techniques
+
+| Technique | Description |
+|---|---|
+| **Leverage visible reasoning** | R1 shows its thinking chain by default — review it to catch errors or refine your prompt accordingly. |
+| **Use for math & code** | R1 is exceptionally strong on STEM tasks; prefer it over V3 when accuracy and step-by-step logic matter. |
+| **Keep system prompts minimal** | DeepSeek models respond well to concise, direct system instructions without excessive formatting. |
+| **Local deployment** | Run open-weight models locally via Ollama or LM Studio for privacy-sensitive tasks. |
